@@ -1,5 +1,4 @@
-package uz.asaxiy.market.utils
-
+package com.example.validator_lib
 import android.content.Context
 import android.content.res.TypedArray
 import android.text.InputType
@@ -7,8 +6,6 @@ import android.text.method.DigitsKeyListener
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatEditText
-import com.example.validator_lib.R
-import uz.asaxiy.market.R
 
 
 class ValidatorEditText(context: Context, attrs: AttributeSet?) :
