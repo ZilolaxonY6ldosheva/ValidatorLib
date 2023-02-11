@@ -1,4 +1,5 @@
 package com.example.validator_lib
+
 import android.content.Context
 import android.content.res.TypedArray
 import android.text.InputType
@@ -19,38 +20,40 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
         setFormat(format)
     }
 
+    private fun setHint(hint1: String) {
+        hint = hint1
+    }
+
     private fun setFormat(format: Int) {
         when (format) {
             0 -> {
                 inputType = InputType.TYPE_CLASS_TEXT
-                hint = "Enter text"
             }
             1 -> {
                 inputType = InputType.TYPE_TEXT_VARIATION_PHONETIC
-                hint = "Enter phone number"
             }
             2 -> {
                 inputType = InputType.TYPE_CLASS_NUMBER
                 keyListener = DigitsKeyListener.getInstance("0123456789.")
-                hint = "Enter ip address"
             }
             3 -> {
                 inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
                 transformationMethod = PasswordTransformationMethod.getInstance()
-                hint = "Enter password"
             }
             4 -> {
                 inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                hint = "Enter email address"
             }
+
         }
     }
 
     fun setErrorMessage(msg: String) {
-        setCompoundDrawablesWithIntrinsicBounds(0,
+        setCompoundDrawablesWithIntrinsicBounds(
+            0,
             0,
             R.drawable.ic_round_error_24,
-            0)
+            0
+        )
         error = msg
     }
 
@@ -81,26 +84,30 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
         return checker
     }
 
-    fun isNotEmpty():Boolean{
-        if (text!!.isEmpty()){
+    fun isNotEmpty(): Boolean {
+        if (text!!.isEmpty()) {
             setErrorMessage("line is empty!")
         }
         return text!!.isNotEmpty()
     }
 
-    fun checkCorrectAndSetError(){
-        if (isNotEmpty()){
-            if (!isCorrectFilled()){
+    fun checkCorrectAndSetError() {
+        if (isNotEmpty()) {
+            if (!isCorrectFilled()) {
                 setErrorMessage("format not correctly!")
-            }else{
-                setCompoundDrawablesWithIntrinsicBounds(0,
+            } else {
+                setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     0,
-                    0)
-                setCompoundDrawablesWithIntrinsicBounds(0,
+                    0,
+                    0
+                )
+                setCompoundDrawablesWithIntrinsicBounds(
+                    0,
                     0,
                     R.drawable.ic_round_check_circle_24,
-                    0)
+                    0
+                )
             }
         }
     }
