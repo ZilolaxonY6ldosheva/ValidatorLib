@@ -3,7 +3,9 @@ package com.example.createownlibrary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.createownlibrary.databinding.ActivityMainBinding
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        setUpSpinner()
-//        setListeners()
+        setListeners()
 
     }
 
@@ -27,58 +29,59 @@ class MainActivity : AppCompatActivity() {
 //        val adapter = ArrayAdapter(this, R.layout.simple_list_item_1, values)
 //        binding.validatorSpinner.setAdapter(adapter)
 //    }
-//
-//
-//    private fun setListeners() {
-//        binding.apply {
-//            clearBtn.setOnClickListener {
+
+
+    private fun setListeners() {
+        binding.apply {
+            clear.setOnClickListener {
 //                validatorSpinner.isSelected(false)
-//                emailEt.text?.clear()
-//                firstEt.text?.clear()
-//                phoneEt.text?.clear()
-//                ipaddressEt.text?.clear()
-//                yearEt.text?.clear()
+                email.text?.clear()
+                userId.text?.clear()
+                telephone.text?.clear()
+                ipAdress.text?.clear()
+                year.text?.clear()
 //                descEt.text?.clear()
-//                doublePasswordEt.clear()
+                password.text!!.clear()
 //                doubleEt.clear()
-//            }
-//            submitBtn.setOnClickListener {
-//                checkData()
-//                if (dataFull())
-//                    Toast.makeText(this@MainActivity, "Data Full", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//    }
-//
-//
-//    private fun dataFull(): Boolean {
-//        binding.apply {
-//
-//            return (isFull() && validatorSpinner.isItemSelected()
-//                    && doubleEt.isNotEmpty())
-//        }
-//    }
-//
-//    fun isFull(): Boolean {
-//        binding.apply {
-//            return (firstEt.isNotEmpty() && emailEt.isNotEmpty() && phoneEt.isNotEmpty() && ipaddressEt.isNotEmpty() &&
-//                    descEt.isNotEmpty() && yearEt.isNotEmpty())
-//        }
-//    }
-//
-//
-//    private fun checkData() {
-//        binding.apply {
-//            doubleEt.checkTextAndSetError()
+            }
+            submit.setOnClickListener {
+                checkData()
+                if (dataFull())
+                    Toast.makeText(this@MainActivity, "Data Full", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    private fun dataFull(): Boolean {
+        binding.apply {
+
+            return (isFull()
+                    && password.isNotEmpty())
+        }
+    }
+
+    //
+    fun isFull(): Boolean {
+        binding.apply {
+            return (userId.isNotEmpty() && email.isNotEmpty() && telephone.isNotEmpty() && ipAdress.isNotEmpty()
+                    && year.isNotEmpty())
+        }
+    }
+
+
+    private fun checkData() {
+        binding.apply {
+            password.checkCorrectAndSetError()
 //            doublePasswordEt.checkTextAndSetError()
-//            firstEt.checkCorrectAndSetError()
-//            emailEt.checkCorrectAndSetError()
-//            phoneEt.checkCorrectAndSetError()
-//            ipaddressEt.checkCorrectAndSetError()
-//            descEt.checkCorrectAndSetError()
-//            yearEt.checkCorrectAndSetError()
+            userId.checkCorrectAndSetError()
+            email.checkCorrectAndSetError()
+            telephone.checkCorrectAndSetError()
+            ipAdress.checkCorrectAndSetError()
+//            des.checkCorrectAndSetError()
+            year.checkCorrectAndSetError()
 //            validatorSpinner.isItemSelected()
-//        }
-//    }
+        }
+    }
 }
 

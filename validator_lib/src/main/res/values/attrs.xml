@@ -9,7 +9,7 @@
         <attr name="maxLength" format="integer" />
         <attr name="inputType" format="string" />
         <attr name="text1" format="string" />
-        <attr name="format" format="string" />
+        <attr name="format" format="integer" />
 
     </declare-styleable>
 
