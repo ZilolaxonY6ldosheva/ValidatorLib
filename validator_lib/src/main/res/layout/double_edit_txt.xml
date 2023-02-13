@@ -8,7 +8,7 @@
     <EditText
         android:id="@+id/password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:hint="Password"
         android:inputType="numberPassword"
@@ -21,7 +21,6 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_round_check_circle_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/password"
         app:layout_constraintTop_toTopOf="parent" />
@@ -29,7 +28,7 @@
     <EditText
         android:id="@+id/re_password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_weight="1"
         android:hint="Re-enter password"
         android:inputType="numberPassword"
@@ -41,7 +40,6 @@
         android:layout_width="16dp"
         android:layout_height="16dp"
         android:layout_gravity="center"
-        android:src="@drawable/ic_round_check_circle_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/re_password"
         app:layout_constraintTop_toTopOf="parent" />

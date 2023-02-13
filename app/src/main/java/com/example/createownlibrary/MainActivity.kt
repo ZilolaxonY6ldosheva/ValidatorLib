@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 //        setUpSpinner()
+        DoubleValidatorText(this)
         setListeners()
     }
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
 
             return (isFull()
-                    && password.isNotEmpty())
+                    && password11.isNotEmpty())
         }
     }
 
@@ -71,8 +72,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkData() {
         binding.apply {
-            password.setTextListeners()
-            password.isNotEmpty()
+            password11.setTextListeners()
+            password11.isNotEmpty()
             userId.checkCorrectAndSetError()
             email.checkCorrectAndSetError()
             telephone.checkCorrectAndSetError()
