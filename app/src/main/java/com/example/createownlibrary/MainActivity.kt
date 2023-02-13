@@ -3,6 +3,7 @@ package com.example.createownlibrary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isNotEmpty
 import com.example.createownlibrary.databinding.ActivityMainBinding
@@ -14,44 +15,44 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        setUpSpinner()
+
+        setUpSpinner()
         setListeners()
+
     }
 
-//    private fun setUpSpinner() {
-//        val values: Array<String> =
-//            arrayOf("England", "Russia", "Italy", "Uzbekistan", "Argentina", "Bolivia")
-//        values.sort()
-//
-//        val adapter = ArrayAdapter(this, R.layout.simple_list_item_1, values)
-//        binding.validatorSpinner.setAdapter(adapter)
-//    }
+    private fun setUpSpinner() {
+        val values: Array<String> =
+            arrayOf("England", "Russia", "Italy", "Uzbekistan", "Argentina", "Bolivia")
+        values.sort()
+
+        val adapter = ArrayAdapter(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, values)
+        binding.validatorSpinner.setAdapter(adapter)
+    }
 
 
     private fun setListeners() {
         binding.apply {
-            clear.setOnClickListener {
-//                validatorSpinner.isSelected(false)
-                email.text?.clear()
-                userId.text?.clear()
-                telephone.text?.clear()
-                ipAdress.text?.clear()
-                year.text?.clear()
-                password.clear()
-//                password.text.clear()
+            clearBtn.setOnClickListener {
+                validatorSpinner.isSelected(false)
+                emailEt.text?.clear()
+                firstEt.text?.clear()
+                phoneEt.text?.clear()
+                ipaddressEt.text?.clear()
+                yearEt.text?.clear()
+                descEt.text?.clear()
+                doublePasswordEt.clear()
+                doubleEt.clear()
             }
-            submit.setOnClickListener {
+            submitBtn.setOnClickListener {
                 checkData()
                 if (dataFull())
                     Toast.makeText(this@MainActivity, "Data Full", Toast.LENGTH_SHORT).show()
             }
-
-
         }
     }
 
@@ -59,30 +60,30 @@ class MainActivity : AppCompatActivity() {
     private fun dataFull(): Boolean {
         binding.apply {
 
-            return (isFull()
-                    && password.isNotEmpty())
+            return (isFull() && validatorSpinner.isItemSelected()
+                    && doubleEt.isNotEmpty())
         }
     }
 
-    //
     fun isFull(): Boolean {
         binding.apply {
-            return (userId.isNotEmpty() && email.isNotEmpty() && telephone.isNotEmpty() && ipAdress.isNotEmpty()
-                    && year.isNotEmpty())
+            return (firstEt.isNotEmpty() && emailEt.isNotEmpty() && phoneEt.isNotEmpty() && ipaddressEt.isNotEmpty() &&
+                    descEt.isNotEmpty() && yearEt.isNotEmpty())
         }
     }
 
 
     private fun checkData() {
         binding.apply {
-            password.setTextListeners()
-            password.isNotEmpty()
-            userId.checkCorrectAndSetError()
-            email.checkCorrectAndSetError()
-            telephone.checkCorrectAndSetError()
-            ipAdress.checkCorrectAndSetError()
-            year.checkCorrectAndSetError()
-        }
+            doubleEt.checkTextAndSetError()
+            doublePasswordEt.checkTextAndSetError()
+            firstEt.checkCorrectAndSetError()
+            emailEt.checkCorrectAndSetError()
+            phoneEt.checkCorrectAndSetError()
+            ipaddressEt.checkCorrectAndSetError()
+            descEt.checkCorrectAndSetError()
+            yearEt.checkCorrectAndSetError()
+            validatorSpinner.isItemSelected() }
     }
-}
 
+}

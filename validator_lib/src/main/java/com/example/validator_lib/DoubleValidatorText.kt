@@ -10,7 +10,7 @@ import android.util.AttributeSet
 import android.widget.EditText
 import android.widget.LinearLayout
 
-class DoubleEditText(context: Context, attrs: AttributeSet?) :
+class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
     LinearLayout(context, attrs) {
     private var atributes: TypedArray
     private var firstEditText: EditText
