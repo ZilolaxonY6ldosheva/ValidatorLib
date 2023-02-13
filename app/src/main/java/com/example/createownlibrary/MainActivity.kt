@@ -40,9 +40,7 @@ class MainActivity : AppCompatActivity() {
                 telephone.text?.clear()
                 ipAdress.text?.clear()
                 year.text?.clear()
-//                descEt.text?.clear()
-                password.text!!.clear()
-//                doubleEt.clear()
+//                password.text.clear()
             }
             submit.setOnClickListener {
                 checkData()
@@ -72,15 +70,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkData() {
         binding.apply {
-            password.checkCorrectAndSetError()
-//            doublePasswordEt.checkTextAndSetError()
+            password.setTextListeners()
+            password.isNotEmpty()
             userId.checkCorrectAndSetError()
             email.checkCorrectAndSetError()
             telephone.checkCorrectAndSetError()
             ipAdress.checkCorrectAndSetError()
-//            des.checkCorrectAndSetError()
             year.checkCorrectAndSetError()
-//            validatorSpinner.isItemSelected()
         }
     }
 }
