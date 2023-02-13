@@ -11,20 +11,17 @@ import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatEditText
 import kotlinx.android.synthetic.main.double_edit_txt.view.*
 
-class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
-    LinearLayout(context, attrs) {
+class DoubleValidatorText(context: Context) :
+    LinearLayout(context) {
 
 
 //    var text: String? = null
 
     init {
-        val atributes: TypedArray =
-            context.obtainStyledAttributes(attrs, R.styleable.ValidatorEditText)
         inflate(context, R.layout.double_edit_txt, this)
         orientation = HORIZONTAL
 
 //        text = atributes.getString(R.styleable.ValidatorEditText_text1)
-        atributes.recycle()
     }
 
     fun setError(switch: Int) {

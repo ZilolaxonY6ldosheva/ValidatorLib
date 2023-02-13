@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.createownlibrary.databinding.ActivityMainBinding
+import com.example.validator_lib.DoubleValidatorText
+import com.example.validator_lib.R
 import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +20,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 //        setUpSpinner()
         setListeners()
-
     }
 
 //    private fun setUpSpinner() {
