@@ -20,9 +20,9 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
     init {
         val atributes: TypedArray =
             context.obtainStyledAttributes(attrs, R.styleable.ValidatorEditText)
-
-        LayoutInflater.from(context).inflate(R.layout.double_edit_txt, null, true)
+        inflate(context, R.layout.double_edit_txt, this)
         orientation = HORIZONTAL
+
 //        text = atributes.getString(R.styleable.ValidatorEditText_text1)
         atributes.recycle()
     }
