@@ -29,62 +29,60 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
     }
 
 
-        fun setError(switch: Int) {
-            when (switch) {
-                2 -> {
-                    re_password_img.setImageResource(R.drawable.ic_round_error_24)
-                    password_img.setImageResource(R.drawable.ic_round_error_24)
-                }
-                1 -> {
-                    re_password_img.setImageResource(R.drawable.ic_round_error_24)
-
-                }
-                0 -> {
-                    password_img.setImageResource(R.drawable.ic_round_error_24)
-
-                }
+    fun setError(switch: Int) {
+        when (switch) {
+            2 -> {
+                re_password_img.setImageResource(R.drawable.ic_round_error_24)
+                password_img.setImageResource(R.drawable.ic_round_error_24)
             }
-
-
-        }
-
-
-        fun isNotEmpty(): Boolean {
-            if (re_password.text.isNotBlank() && password.text.isNotBlank()) {
-                setError(2)
-            }
-            return re_password.text.isNotBlank() && password.text.isNotBlank()
-        }
-
-
-        fun setTextListeners() {
-            re_password.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    checkBothAndSetDrawable(s == password.text)
-                }
-
-                override fun afterTextChanged(s: Editable?) {
-
-                }
-
-            })
-        }
-
-        fun checkBothAndSetDrawable(same: Boolean) {
-            if (same) {
-                re_password_img.setImageResource(R.drawable.ic_round_check_circle_24)
-            } else {
+            1 -> {
                 re_password_img.setImageResource(R.drawable.ic_round_error_24)
 
             }
+            0 -> {
+                password_img.setImageResource(R.drawable.ic_round_error_24)
+
+            }
+        }
+
+
+    }
+
+
+    fun setTextListeners() {
+        re_password.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence?,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                checkBothAndSetDrawable(s.toString() == password.text.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+        })
+    }
+
+    fun clear() {
+
+        re_password.text.clear()
+        password.text.clear()
+    }
+
+    fun checkBothAndSetDrawable(same: Boolean) {
+        if (same) {
+            re_password_img.setImageResource(R.drawable.ic_round_check_circle_24)
+        } else {
+            re_password_img.setImageResource(R.drawable.ic_round_error_24)
+
         }
     }
+}

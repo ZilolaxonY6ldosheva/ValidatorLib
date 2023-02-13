@@ -4,6 +4,7 @@ package com.example.createownlibrary
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.core.view.isNotEmpty
 import com.example.createownlibrary.databinding.ActivityMainBinding
 import com.example.validator_lib.DoubleValidatorText
 import com.example.validator_lib.R
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
                 telephone.text?.clear()
                 ipAdress.text?.clear()
                 year.text?.clear()
+                password.clear()
 //                password.text.clear()
             }
             submit.setOnClickListener {
@@ -48,6 +50,8 @@ class MainActivity : AppCompatActivity() {
                 if (dataFull())
                     Toast.makeText(this@MainActivity, "Data Full", Toast.LENGTH_SHORT).show()
             }
+
+
         }
     }
 
