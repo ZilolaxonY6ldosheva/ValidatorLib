@@ -50,7 +50,7 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
 
 
         fun isNotEmpty(): Boolean {
-            if (re_password.text.isEmpty() && password.text.isEmpty()) {
+            if (re_password.text.isNotBlank() && password.text.isNotBlank()) {
                 setError(2)
             }
             return re_password.text.isNotBlank() && password.text.isNotBlank()
