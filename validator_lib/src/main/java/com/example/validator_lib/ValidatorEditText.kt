@@ -45,16 +45,34 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
                 inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
                 hint = "Enter email address"
             }
+            5 -> {
+                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                hint = "First name"
+            }
+            6 -> {
+                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                hint = "Last name"
+            }
+            7 -> {
+                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                hint = "Zip code"
+            }
+            8 -> {
+                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                hint = "Year"
+            }
 
 
         }
     }
 
     fun setErrorMessage(msg: String) {
-        setCompoundDrawablesWithIntrinsicBounds(0,
+        setCompoundDrawablesWithIntrinsicBounds(
+            0,
             0,
             R.drawable.ic_round_error_24,
-            0)
+            0
+        )
         error = msg
     }
 
@@ -85,26 +103,30 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
         return checker
     }
 
-    fun isNotEmpty():Boolean{
-        if (text!!.isEmpty()){
+    fun isNotEmpty(): Boolean {
+        if (text!!.isEmpty()) {
             setErrorMessage("line is empty!")
         }
         return text!!.isNotEmpty()
     }
 
-    fun checkCorrectAndSetError(){
-        if (isNotEmpty()){
-            if (!isCorrectFilled()){
+    fun checkCorrectAndSetError() {
+        if (isNotEmpty()) {
+            if (!isCorrectFilled()) {
                 setErrorMessage("format not correctly!")
-            }else{
-                setCompoundDrawablesWithIntrinsicBounds(0,
+            } else {
+                setCompoundDrawablesWithIntrinsicBounds(
                     0,
                     0,
-                    0)
-                setCompoundDrawablesWithIntrinsicBounds(0,
+                    0,
+                    0
+                )
+                setCompoundDrawablesWithIntrinsicBounds(
+                    0,
                     0,
                     R.drawable.ic_round_check_circle_24,
-                    0)
+                    0
+                )
             }
         }
     }

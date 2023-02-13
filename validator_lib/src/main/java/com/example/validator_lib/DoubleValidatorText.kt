@@ -40,8 +40,8 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
         if (!isPassword) {
             firstEditText.inputType = InputType.TYPE_CLASS_TEXT
             secondEditText.inputType = InputType.TYPE_CLASS_TEXT
-            firstEditText.hint = "enter text"
-            secondEditText.hint = "enter text"
+            firstEditText.hint = "First Name"
+            secondEditText.hint = "Last Name"
         }else{
             firstEditText.hint = "enter password"
             secondEditText.hint = "re-enter this password"

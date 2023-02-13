@@ -11,6 +11,10 @@
             <enum name="ip_address" value="2"/>
             <enum name="password" value="3"/>
             <enum name="email_address" value="4"/>
+            <enum name="last_name" value="5"/>
+            <enum name="first_name" value="6"/>
+            <enum name="zip_code" value="7"/>
+            <enum name="year" value="8"/>
         </attr>
     </declare-styleable>
     <declare-styleable name="DoubleEditText">
