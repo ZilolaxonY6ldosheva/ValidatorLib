@@ -18,9 +18,8 @@ class DoubleValidatorText(context: Context) :
 //    var text: String? = null
 
     init {
-        inflate(context, R.layout.double_edit_txt, this)
+        LayoutInflater.from(context).inflate( R.layout.double_edit_txt, this,true)
         orientation = HORIZONTAL
-
 //        text = atributes.getString(R.styleable.ValidatorEditText_text1)
     }
 
