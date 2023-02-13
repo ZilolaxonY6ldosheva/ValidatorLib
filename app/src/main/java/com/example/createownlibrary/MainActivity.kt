@@ -56,7 +56,7 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
 
             return (isFull()
-                    && password11.isNotEmpty())
+                    && password.isNotEmpty())
         }
     }
 
@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkData() {
         binding.apply {
-            password11.setTextListeners()
-            password11.isNotEmpty()
+            password.setTextListeners()
+            password.isNotEmpty()
             userId.checkCorrectAndSetError()
             email.checkCorrectAndSetError()
             telephone.checkCorrectAndSetError()

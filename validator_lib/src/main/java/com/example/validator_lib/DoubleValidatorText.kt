@@ -17,7 +17,7 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
 
 
     var atributes: TypedArray =
-        context.obtainStyledAttributes(attrs, R.styleable.ValidatorEditText)
+        context.obtainStyledAttributes(attrs, R.styleable.StyleInputEditText)
     val format: Int = atributes.getInt(R.styleable.ValidatorEditText_format, 0)
 
     init {
@@ -52,12 +52,8 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
         fun isNotEmpty(): Boolean {
             if (re_password.text.isEmpty() && password.text.isEmpty()) {
                 setError(2)
-            } else if (re_password.text.isEmpty() && password.text.isNotEmpty()) {
-                setError(1)
-            } else if (re_password.text.isNotEmpty() && password.text.isEmpty()) {
-                setError(0)
             }
-            return re_password.text!!.isNotEmpty() && password.text!!.isNotEmpty()
+            return re_password.text.isNotBlank() && password.text.isNotBlank()
         }
 
 
@@ -86,7 +82,6 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
         fun checkBothAndSetDrawable(same: Boolean) {
             if (same) {
                 re_password_img.setImageResource(R.drawable.ic_round_check_circle_24)
-
             } else {
                 re_password_img.setImageResource(R.drawable.ic_round_error_24)
 
