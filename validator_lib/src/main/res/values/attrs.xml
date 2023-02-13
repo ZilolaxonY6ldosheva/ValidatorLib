@@ -15,6 +15,7 @@
             <enum name="first_name" value="6"/>
             <enum name="zip_code" value="7"/>
             <enum name="year" value="8"/>
+            <enum name="id" value="9"/>
         </attr>
     </declare-styleable>
     <declare-styleable name="DoubleEditText">

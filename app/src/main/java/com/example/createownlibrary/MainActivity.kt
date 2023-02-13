@@ -3,9 +3,11 @@ package com.example.createownlibrary
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.view.isNotEmpty
+import com.example.createownlibrary.R.id
 import com.example.createownlibrary.databinding.ActivityMainBinding
 import com.example.validator_lib.DoubleValidatorText
 import com.example.validator_lib.R
@@ -30,7 +32,11 @@ class MainActivity : AppCompatActivity() {
             arrayOf("England", "Russia", "Italy", "Uzbekistan", "Argentina", "Bolivia")
         values.sort()
 
-        val adapter = ArrayAdapter(this, com.google.android.material.R.layout.support_simple_spinner_dropdown_item, values)
+        val adapter = ArrayAdapter(
+            this,
+            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
+            values
+        )
         binding.validatorSpinner.setAdapter(adapter)
     }
 
@@ -47,6 +53,14 @@ class MainActivity : AppCompatActivity() {
                 descEt.text?.clear()
                 doublePasswordEt.clear()
                 doubleEt.clear()
+                emailEt.setCompoundDrawables(null, null, null, null)
+                firstEt.setCompoundDrawables(null, null, null, null)
+                phoneEt.setCompoundDrawables(null, null, null, null)
+                ipaddressEt.setCompoundDrawables(null, null, null, null)
+                yearEt.setCompoundDrawables(null, null, null, null)
+                descEt.setCompoundDrawables(null, null, null, null)
+                yearEt.setCompoundDrawables(null, null, null, null)
+
             }
             submitBtn.setOnClickListener {
                 checkData()
@@ -83,7 +97,8 @@ class MainActivity : AppCompatActivity() {
             ipaddressEt.checkCorrectAndSetError()
             descEt.checkCorrectAndSetError()
             yearEt.checkCorrectAndSetError()
-            validatorSpinner.isItemSelected() }
+            validatorSpinner.isItemSelected()
+        }
     }
 
 }

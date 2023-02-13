@@ -29,37 +29,33 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
             }
             1 -> {
                 inputType = InputType.TYPE_TEXT_VARIATION_PHONETIC
-                hint = "Enter phone number"
+                hint = "Telephone number"
             }
             2 -> {
                 inputType = InputType.TYPE_CLASS_NUMBER
                 keyListener = DigitsKeyListener.getInstance("0123456789.")
-                hint = "Enter ip address"
+                hint = "IP address"
             }
             3 -> {
                 inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
                 transformationMethod = PasswordTransformationMethod.getInstance()
-                hint = "Enter password"
+                hint = "Password"
             }
             4 -> {
                 inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                hint = "Enter email address"
-            }
-            5 -> {
-                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                hint = "First name"
-            }
-            6 -> {
-                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                hint = "Last name"
+                hint = "Email Address"
             }
             7 -> {
-                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
-                hint = "Zip code"
+                inputType = InputType.TYPE_CLASS_NUMBER
+                hint = "Zip Code"
             }
             8 -> {
-                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                inputType = InputType.TYPE_CLASS_TEXT
                 hint = "Year"
+            }
+            9 -> {
+                inputType = InputType.TYPE_CLASS_NUMBER
+                hint = "User ID"
             }
 
 

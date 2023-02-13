@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.EditText
 import android.widget.LinearLayout
+import kotlinx.android.synthetic.main.double_edit_txt.view.*
 
 class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
     LinearLayout(context, attrs) {
@@ -42,9 +43,9 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
             secondEditText.inputType = InputType.TYPE_CLASS_TEXT
             firstEditText.hint = "First Name"
             secondEditText.hint = "Last Name"
-        }else{
-            firstEditText.hint = "enter password"
-            secondEditText.hint = "re-enter this password"
+        } else {
+            firstEditText.hint = "Enter password"
+            secondEditText.hint = "Re-enter password"
         }
 
         secondEditText.addTextChangedListener(object : TextWatcher {
@@ -58,21 +59,27 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
                         .isNotEmpty() && p0.toString().length == firstEditText.text.toString().length
                 ) {
                     if (p0.toString() == firstEditText.text.toString() && isPassword) {
-                        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                        secondEditText.setCompoundDrawablesWithIntrinsicBounds(
+                            0,
                             0,
                             R.drawable.ic_round_check_circle_24,
-                            0)
+                            0
+                        )
                     } else if (p0.toString() != firstEditText.text.toString() && isPassword) {
-                        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                        secondEditText.setCompoundDrawablesWithIntrinsicBounds(
+                            0,
                             0,
                             R.drawable.ic_round_error_24,
-                            0)
+                            0
+                        )
                     }
                 } else {
-                    secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                    secondEditText.setCompoundDrawablesWithIntrinsicBounds(
                         0,
                         0,
-                        0)
+                        0,
+                        0
+                    )
                 }
             }
 
@@ -101,23 +108,29 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
     fun setErrorWithDrawable() {
         if (isPassword)
             secondEditText.error = "Please re-enter password"
-        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+        secondEditText.setCompoundDrawablesWithIntrinsicBounds(
+            0,
             0,
             R.drawable.ic_round_error_24,
-            0)
+            0
+        )
     }
 
     fun setErrorWithDrawable(msg: String) {
         secondEditText.error = msg
-        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+        secondEditText.setCompoundDrawablesWithIntrinsicBounds(
+            0,
             0,
             R.drawable.ic_round_error_24,
-            0)
+            0
+        )
     }
 
     fun clear() {
         firstEditText.text.clear()
         secondEditText.text.clear()
+        firstEditText.setCompoundDrawables(null, null, null, null)
+        secondEditText.setCompoundDrawables(null, null, null, null)
     }
 
     fun isNotEmpty(): Boolean {
@@ -129,11 +142,13 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
             setErrorWithDrawable()
         } else if ((firstEditText.text.isEmpty() || secondEditText.text.isEmpty()))
             setErrorWithDrawable("Please re-enter")
-        else{
-            secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+        else {
+            secondEditText.setCompoundDrawablesWithIntrinsicBounds(
+                0,
                 0,
                 R.drawable.ic_round_check_circle_24,
-                0)
+                0
+            )
         }
     }
 
