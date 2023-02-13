@@ -3,86 +3,138 @@ package com.example.validator_lib
 import android.content.Context
 import android.content.res.TypedArray
 import android.text.Editable
+import android.text.InputFilter
 import android.text.InputType
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.view.LayoutInflater
 import android.widget.EditText
 import android.widget.LinearLayout
-import androidx.appcompat.widget.AppCompatEditText
-import kotlinx.android.synthetic.main.double_edit_txt.view.*
 
-class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
+class DoubleEditText(context: Context, attrs: AttributeSet?) :
     LinearLayout(context, attrs) {
-
-
-    var atributes: TypedArray =
-        context.obtainStyledAttributes(attrs, R.styleable.StyleInputEditText)
-    val format: Int = atributes.getInt(R.styleable.ValidatorEditText_format, 0)
+    private var atributes: TypedArray
+    private var firstEditText: EditText
+    private var secondEditText: EditText
+    private var firstPassword: String
+    private var secondPassword: String
+    private val isPassword: Boolean
 
     init {
-
-        LayoutInflater.from(context).inflate(R.layout.double_edit_txt, this, true)
-        orientation = HORIZONTAL
-
-        atributes.recycle()
+        inflate(context, R.layout.double_edit_txt, this)
+        atributes = context.obtainStyledAttributes(attrs, R.styleable.DoubleEditText)
+        firstEditText = findViewById(R.id.password)
+        secondEditText = findViewById(R.id.re_password)
+        firstPassword = firstEditText.text.toString()
+        secondPassword = secondEditText.text.toString()
+        isPassword =
+            atributes.getBoolean(R.styleable.DoubleEditText_passwordEnabled, true)
+        setUp()
     }
 
-
-    fun setError(switch: Int) {
-        when (switch) {
-            2 -> {
-                re_password_img.setImageResource(R.drawable.ic_round_error_24)
-                password_img.setImageResource(R.drawable.ic_round_error_24)
-            }
-            1 -> {
-                re_password_img.setImageResource(R.drawable.ic_round_error_24)
-
-            }
-            0 -> {
-                password_img.setImageResource(R.drawable.ic_round_error_24)
-
-            }
+    private fun setUp() {
+        val maxLength = atributes.getInt(R.styleable.DoubleEditText_maxLength, 25)
+        val fArray = arrayOfNulls<InputFilter>(1)
+        fArray[0] = InputFilter.LengthFilter(maxLength)
+        firstEditText.filters = fArray
+        secondEditText.filters = fArray
+        if (!isPassword) {
+            firstEditText.inputType = InputType.TYPE_CLASS_TEXT
+            secondEditText.inputType = InputType.TYPE_CLASS_TEXT
+            firstEditText.hint = "enter text"
+            secondEditText.hint = "enter text"
+        }else{
+            firstEditText.hint = "enter password"
+            secondEditText.hint = "re-enter this password"
         }
 
-
-    }
-
-
-    fun setTextListeners() {
-        re_password.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(
-                s: CharSequence?,
-                start: Int,
-                count: Int,
-                after: Int
-            ) {
+        secondEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                checkBothAndSetDrawable(s.toString() == password.text.toString())
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                if (p0.toString()
+                        .isNotEmpty() && p0.toString().length == firstEditText.text.toString().length
+                ) {
+                    if (p0.toString() == firstEditText.text.toString() && isPassword) {
+                        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                            0,
+                            R.drawable.ic_round_check_circle_24,
+                            0)
+                    } else if (p0.toString() != firstEditText.text.toString() && isPassword) {
+                        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                            0,
+                            R.drawable.ic_round_error_24,
+                            0)
+                    }
+                } else {
+                    secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                        0,
+                        0,
+                        0)
+                }
             }
 
-            override fun afterTextChanged(s: Editable?) {
+            override fun afterTextChanged(p0: Editable?) {
 
             }
 
         })
     }
 
-    fun clear() {
 
-        re_password.text.clear()
-        password.text.clear()
+    fun getFirstText(): String {
+        firstPassword = firstEditText.text.toString()
+        return firstPassword
     }
 
-    fun checkBothAndSetDrawable(same: Boolean) {
-        if (same) {
-            re_password_img.setImageResource(R.drawable.ic_round_check_circle_24)
-        } else {
-            re_password_img.setImageResource(R.drawable.ic_round_error_24)
+    fun getSecondText(): String {
+        secondPassword = secondEditText.text.toString()
+        return secondPassword
+    }
 
+    fun isCompatible(): Boolean {
+        return (getFirstText() == getSecondText())
+    }
+
+    fun setErrorWithDrawable() {
+        if (isPassword)
+            secondEditText.error = "Please re-enter password"
+        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+            0,
+            R.drawable.ic_round_error_24,
+            0)
+    }
+
+    fun setErrorWithDrawable(msg: String) {
+        secondEditText.error = msg
+        secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+            0,
+            R.drawable.ic_round_error_24,
+            0)
+    }
+
+    fun clear() {
+        firstEditText.text.clear()
+        secondEditText.text.clear()
+    }
+
+    fun isNotEmpty(): Boolean {
+        return (firstEditText.text.isNotEmpty() && secondEditText.text.isNotEmpty())
+    }
+
+    fun checkTextAndSetError() {
+        if (isPassword && !isCompatible() || firstEditText.text.isEmpty()) {
+            setErrorWithDrawable()
+        } else if ((firstEditText.text.isEmpty() || secondEditText.text.isEmpty()))
+            setErrorWithDrawable("Please re-enter")
+        else{
+            secondEditText.setCompoundDrawablesWithIntrinsicBounds(0,
+                0,
+                R.drawable.ic_round_check_circle_24,
+                0)
         }
     }
+
 }

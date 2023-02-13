@@ -12,5 +12,8 @@
         <attr name="format" format="integer" />
 
     </declare-styleable>
-
+    <declare-styleable name="DoubleEditText">
+        <attr name="passwordEnabled" format="boolean"/>
+        <attr name="maxLength" format="integer"/>
+    </declare-styleable>
 </resources>
