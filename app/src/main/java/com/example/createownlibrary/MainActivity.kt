@@ -1,21 +1,16 @@
 package com.example.createownlibrary
 
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.view.isNotEmpty
-import com.example.createownlibrary.R.id
+import androidx.appcompat.app.AppCompatActivity
 import com.example.createownlibrary.databinding.ActivityMainBinding
-import com.example.validator_lib.DoubleValidatorText
-import com.example.validator_lib.R
-import kotlinx.android.synthetic.main.activity_main.view.*
+import com.example.validator_lib.ValidatorSpinner
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +23,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpSpinner() {
-        val values: Array<String> =
-            arrayOf("England", "Russia", "Italy", "Uzbekistan", "Argentina", "Bolivia")
-        values.sort()
+        val adapter = ValidatorSpinner.ListExampleAdapter(this)
 
-        val adapter = ArrayAdapter(
-            this,
-            com.google.android.material.R.layout.support_simple_spinner_dropdown_item,
-            values
-        )
         binding.validatorSpinner.setAdapter(adapter)
     }
 
@@ -44,7 +32,7 @@ class MainActivity : AppCompatActivity() {
     private fun setListeners() {
         binding.apply {
             clearBtn.setOnClickListener {
-                validatorSpinner.isSelected(false)
+                validatorSpinner.setImgGone()
                 emailEt.text?.clear()
                 firstEt.text?.clear()
                 phoneEt.text?.clear()
@@ -65,7 +53,7 @@ class MainActivity : AppCompatActivity() {
             submitBtn.setOnClickListener {
                 checkData()
                 if (dataFull())
-                    Toast.makeText(this@MainActivity, "Data Full", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, "Success", Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -79,10 +67,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun isFull(): Boolean {
+    private fun isFull(): Boolean {
         binding.apply {
             return (firstEt.isNotEmpty() && emailEt.isNotEmpty() && phoneEt.isNotEmpty() && ipaddressEt.isNotEmpty() &&
-                    descEt.isNotEmpty() && yearEt.isNotEmpty())
+                    descEt.isNotEmpty() && yearEt.isNotEmpty() && validatorSpinner.isItemSelected())
         }
     }
 

@@ -54,7 +54,7 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
                 hint = "Year"
             }
             9 -> {
-                inputType = InputType.TYPE_CLASS_NUMBER
+                inputType = InputType.TYPE_CLASS_TEXT
                 hint = "User ID"
             }
 
@@ -95,13 +95,27 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
                 val emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+".toRegex()
                 checker = text.toString().matches(emailPattern)
             }
+            8 -> {
+                val emailPattern = "^\\d{4}".toRegex()
+                checker = text.toString().matches(emailPattern)
+            }
+
+            7 -> {
+                val emailPattern = "^\\d{5}(?:-\\d{4})?\$".toRegex()
+                checker = text.toString().matches(emailPattern)
+            }
+            9 -> {
+               if (text.toString().isNotEmpty()){
+                   checker = true
+               }
+            }
         }
         return checker
     }
 
     fun isNotEmpty(): Boolean {
         if (text!!.isEmpty()) {
-            setErrorMessage("line is empty!")
+            setErrorMessage("Fill blanks!")
         }
         return text!!.isNotEmpty()
     }
@@ -109,7 +123,7 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
     fun checkCorrectAndSetError() {
         if (isNotEmpty()) {
             if (!isCorrectFilled()) {
-                setErrorMessage("format not correctly!")
+                setErrorMessage("Incorrect format!")
             } else {
                 setCompoundDrawablesWithIntrinsicBounds(
                     0,

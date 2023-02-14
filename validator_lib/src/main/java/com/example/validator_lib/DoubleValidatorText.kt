@@ -1,5 +1,6 @@
 package com.example.validator_lib
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.text.Editable
@@ -9,8 +10,8 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.widget.EditText
 import android.widget.LinearLayout
-import kotlinx.android.synthetic.main.double_edit_txt.view.*
 
+@SuppressLint("CustomViewStyleable")
 class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
     LinearLayout(context, attrs) {
     private var atributes: TypedArray
@@ -73,41 +74,35 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
                             0
                         )
                     }
-                } else {
-                    secondEditText.setCompoundDrawablesWithIntrinsicBounds(
-                        0,
-                        0,
-                        0,
-                        0
-                    )
                 }
             }
 
-            override fun afterTextChanged(p0: Editable?) {
+            override fun afterTextChanged(s: Editable?) {
 
             }
+
 
         })
     }
 
 
-    fun getFirstText(): String {
+    private fun getFirstText(): String {
         firstPassword = firstEditText.text.toString()
         return firstPassword
     }
 
-    fun getSecondText(): String {
+    private fun getSecondText(): String {
         secondPassword = secondEditText.text.toString()
         return secondPassword
     }
 
-    fun isCompatible(): Boolean {
+    private fun isCompatible(): Boolean {
         return (getFirstText() == getSecondText())
     }
 
-    fun setErrorWithDrawable() {
+    private fun setErrorWithDrawable() {
         if (isPassword)
-            secondEditText.error = "Please re-enter password"
+            secondEditText.error = "Re-enter password"
         secondEditText.setCompoundDrawablesWithIntrinsicBounds(
             0,
             0,
@@ -116,7 +111,7 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
         )
     }
 
-    fun setErrorWithDrawable(msg: String) {
+    private fun setErrorWithDrawable(msg: String) {
         secondEditText.error = msg
         secondEditText.setCompoundDrawablesWithIntrinsicBounds(
             0,
@@ -141,7 +136,7 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
         if (isPassword && !isCompatible() || firstEditText.text.isEmpty()) {
             setErrorWithDrawable()
         } else if ((firstEditText.text.isEmpty() || secondEditText.text.isEmpty()))
-            setErrorWithDrawable("Please re-enter")
+            setErrorWithDrawable("Please re-enter the password")
         else {
             secondEditText.setCompoundDrawablesWithIntrinsicBounds(
                 0,
