@@ -27,5 +27,5 @@ allprojects {
 
 ```
 dependencies {
-	implementation 'com.github.ZilolaxonY6ldosheva:ValidatorLib:1.0.0'
+	implementation 'com.github.ZilolaxonY6ldosheva:ValidatorLib:1.0.2'
 }
