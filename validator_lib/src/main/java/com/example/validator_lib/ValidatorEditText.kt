@@ -45,6 +45,10 @@ class ValidatorEditText(context: Context, attrs: AttributeSet?) :
                 inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
                 hint = "Email Address"
             }
+            4 -> {
+                inputType = InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+                hint = "Email Address"
+            }
             7 -> {
                 inputType = InputType.TYPE_CLASS_NUMBER
                 hint = "Zip Code"

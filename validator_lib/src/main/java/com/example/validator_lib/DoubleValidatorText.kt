@@ -56,9 +56,6 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
-                if (p0.toString()
-                        .isNotEmpty() && p0.toString().length == firstEditText.text.toString().length
-                ) {
                     if (p0.toString() == firstEditText.text.toString() && isPassword) {
                         secondEditText.setCompoundDrawablesWithIntrinsicBounds(
                             0,
@@ -74,7 +71,7 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
                             0
                         )
                     }
-                }
+
             }
 
             override fun afterTextChanged(s: Editable?) {
@@ -136,7 +133,7 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
         if (isPassword && !isCompatible() || firstEditText.text.isEmpty()) {
             setErrorWithDrawable()
         } else if ((firstEditText.text.isEmpty() || secondEditText.text.isEmpty()))
-            setErrorWithDrawable("Please re-enter the password")
+            setErrorWithDrawable("Please re-enter")
         else {
             secondEditText.setCompoundDrawablesWithIntrinsicBounds(
                 0,
@@ -146,5 +143,4 @@ class DoubleValidatorText(context: Context, attrs: AttributeSet?) :
             )
         }
     }
-
 }

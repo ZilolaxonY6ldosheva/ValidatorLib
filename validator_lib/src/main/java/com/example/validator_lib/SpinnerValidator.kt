@@ -32,26 +32,6 @@ class ValidatorSpinner(context: Context, attrs: AttributeSet?) : ConstraintLayou
 
 
     fun isItemSelected(): Boolean {
-        spinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                if (position == 0) {
-                    setError()
-                } else {
-                    spinner_img.setImageResource(R.drawable.ic_round_check_circle_24)
-                }
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                setError()
-
-            }
-
-        }
         if (spinner.selectedItemPosition == 0) {
             setError()
         } else {
@@ -64,6 +44,7 @@ class ValidatorSpinner(context: Context, attrs: AttributeSet?) : ConstraintLayou
 
     fun setImgGone() {
         spinner_img.setImageResource(0)
+        spinner.setSelection(0)
 
     }
 

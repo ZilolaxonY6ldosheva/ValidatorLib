@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun isFull(): Boolean {
         binding.apply {
-            return (firstEt.isNotEmpty() && emailEt.isNotEmpty() && phoneEt.isNotEmpty() && ipaddressEt.isNotEmpty() &&
+            return (firstEt.isNotEmpty() && emailEt.isNotEmpty() && phoneEt.isNotEmpty() && ipaddressEt.isCorrectFilled() &&
                     descEt.isNotEmpty() && yearEt.isNotEmpty() && validatorSpinner.isItemSelected())
         }
     }
@@ -86,6 +86,7 @@ class MainActivity : AppCompatActivity() {
             descEt.checkCorrectAndSetError()
             yearEt.checkCorrectAndSetError()
             validatorSpinner.isItemSelected()
+
         }
     }
 
